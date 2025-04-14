@@ -1,3 +1,4 @@
+using AdminServicesMenu.WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AdminServicesMenu.WebApi.Controllers;
@@ -6,4 +7,14 @@ namespace AdminServicesMenu.WebApi.Controllers;
 [Route("api/[controller]")]
 public class PresetController : ControllerBase
 {
+    
+    [HttpGet("{Id}", Name = nameof(GetCurrentPreset))]
+    [Produces("application/json", "application/xml")]
+    public ActionResult<PresetDTO> GetCurrentPreset([FromRoute] string Id)
+    {
+        // TODO ...
+        
+        return Ok();
+    }
+    
 }
