@@ -1,5 +1,10 @@
+using AdminServicesMenu.Core.Domain;
+using AdminServicesMenu.Core.Models;
+using AdminServicesMenu.Core.Repositories.Presets;
+using AdminServicesMenu.Core.Services;
 using AdminServicesMenu.WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace AdminServicesMenu.WebApi.Controllers;
 
@@ -7,48 +12,90 @@ namespace AdminServicesMenu.WebApi.Controllers;
 [Route("api/[controller]")]
 public class PresetController : ControllerBase
 {
-    public PresetController()
+    private readonly IPresetService _presetService;
+    
+    public PresetController(IPresetService presetService)
     {
-        // TODO ...
+        _presetService = presetService;
     }
     
     
     [HttpGet("{Id}", Name = nameof(GetCurrentPreset))]
     [Produces("application/json", "application/xml")]
-    public ActionResult<PresetDTO> GetCurrentPreset([FromRoute] string Id)
+    public async Task<ActionResult<PresetDTO>> GetCurrentPreset([FromRoute] string Id)
     {
-        // TODO ...
+        if (string.IsNullOrEmpty(Id))
+            return BadRequest();
         
-        return Ok();
+        var obj = _presetService.GetByIdAsync(Id);
+        
+        return Ok(await obj);
     }
-    
-    [HttpGet(Name = nameof(GetAllPresets))]
+
+    [HttpGet(Name = nameof(GetPresets))]
     [Produces("application/json", "application/xml")]
-    public ActionResult<PresetDTO> GetAllPresets()
+    public ActionResult<IEnumerable<PresetDTO>> GetPresets([FromQuery]int pageNumber = 1, [FromQuery]int pageSize = 10)
     {
-        // TODO ...
+        pageNumber = Math.Max(pageNumber, 1);
+        pageSize = Math.Min(Math.Max(pageSize, 1), 20);
+
+        /*
+        var page = new Object();
+
+        var paginationHeader = new
+        {
+            previousPageLink = page.HasPrevious
+                ? CreateGetUsersUri(page.CurrentPage - 1, page.PageSize)
+                : null,
+            nextPageLink = page.HasNext
+                ? CreateGetUsersUri(page.CurrentPage + 1, page.PageSize)
+                : null,
+            totalCount = page.TotalCount,
+            pageSize = page.PageSize,
+            currentPage = page.CurrentPage,
+            totalPages = page.TotalPages
+        };
         
+        Response.Headers.Append("X-Pagination", JsonConvert.SerializeObject(paginationHeader));
+        
+        return Ok(page);
+        */
         return Ok();
     }
 
     [HttpPost]
     [Produces("application/json", "application/xml")]
-    public ActionResult<PresetDTO> CreatePreset()
+    public async Task<ActionResult<PresetDTO>> CreatePreset([FromBody]PresetCreateDTO preset)
     {
-        return Ok();
+        if (preset is null)
+            return BadRequest();
+        
+        var obj = _presetService.CreateAsync(preset);
+        
+        return Ok(await obj);
     }
 
+    [HttpDelete("{Id}")]
+    [Produces("application/json", "application/xml")]
+    public async Task<ActionResult<PresetDTO>> DeletePreset([FromQuery]string Id)
+    {
+        if (string.IsNullOrEmpty(Id))
+            return BadRequest();
+        
+        var obj = _presetService.DeleteAsync(Id);
+    
+        return Ok(await obj);
+    }
+    
     [HttpPut("{Id}")]
     [Produces("application/json", "application/xml")]
-    public ActionResult<PresetDTO> UpdatePreset([FromRoute] string Id, [FromBody] PresetDTO preset)
+    public async Task<ActionResult<PresetDTO>> UpdatePreset([FromRoute] string Id, [FromBody] PresetUpdateDTO preset)
     {
-        return Ok();
-    }
+        if (string.IsNullOrEmpty(Id) || preset is null)
+            return BadRequest();
+        
+        var obj = _presetService.UpdateAsync(preset);
 
-    [HttpDelete("{userId}")]
-    [Produces("application/json", "application/xml")]
-    public ActionResult<PresetDTO> DeletePreset(string userId)
-    {
-        return Ok();
+        return Ok(await obj);
     }
 }
