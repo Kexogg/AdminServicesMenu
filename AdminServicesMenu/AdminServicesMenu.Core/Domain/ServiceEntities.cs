@@ -10,19 +10,16 @@ public interface IServiceInfo
     public bool? NoReferrer { get; }
 }
 
-public record Service(string Key, string Title, string Subtitle, string Link, string Icon, bool? NoReferrer) : IServiceInfo
+public record Service(string Id, string Key, string Title, string Subtitle, string Link, string Icon, bool? NoReferrer) 
+    : Entity(Id), IServiceInfo
 {
-    public string Id { get; } = null!;
-
     public PromoPeriod? PromoPeriod { get; set; }
 }
 
-public class PromoPeriod
+public record PromoPeriod(string Id) : Entity(Id)
 {
     private readonly DateTime? _startDate;
     private readonly DateTime? _endDate;
-
-    public string Id;
     
     public DateTime? StartDate
     {

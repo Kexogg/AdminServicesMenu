@@ -3,15 +3,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AdminServicesMenu.Core.Repositories.SettingsRepository;
 
-public class PersonalSettingsRepository(AdminServicesMenuDbContext dbContext) : 
-    EntityRepository<PersonalSettings>(dbContext), IPersonalSettingRepository
+public class PersonalSettingsRepository(AdminServicesMenuDbContext dbCtx) : 
+    EntityRepository<PersonalSettings>(dbCtx), IPersonalSettingRepository
 {
-    private readonly AdminServicesMenuDbContext _dbContext = dbContext;
+    private readonly AdminServicesMenuDbContext _dbCtx = dbCtx;
 
     public override Task<PersonalSettings?> UpdateAsync(PersonalSettings item,
         CancellationToken cancellationToken = default)
     {
-        _dbContext.PersonalSettings
+        _dbCtx.PersonalSettings
             .Where(settings => settings.Id == item.Id)
             .ExecuteUpdateAsync(calls => calls
                 .SetProperty(settings => settings.Favorites, item.Favorites)
@@ -20,7 +20,7 @@ public class PersonalSettingsRepository(AdminServicesMenuDbContext dbContext) :
     }
 
     public override Task DeleteAsync(string itemId, CancellationToken cancellationToken = default)
-        => _dbContext.PersonalSettings
+        => _dbCtx.PersonalSettings
             .Where(settings => settings.Id == itemId)
             .ExecuteDeleteAsync(cancellationToken);
 }

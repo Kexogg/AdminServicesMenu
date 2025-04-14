@@ -3,14 +3,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AdminServicesMenu.Core.Repositories.PromoPeriods;
 
-public class PromoPeriodRepository(AdminServicesMenuDbContext dbContext) 
-    : EntityRepository<PromoPeriod>(dbContext), IPromoPeriodRepository
+public class PromoPeriodRepository(AdminServicesMenuDbContext dbCtx) 
+    : EntityRepository<PromoPeriod>(dbCtx), IPromoPeriodRepository
 {
-    private readonly AdminServicesMenuDbContext _dbContext = dbContext;
+    private readonly AdminServicesMenuDbContext _dbCtx = dbCtx;
 
     public override Task<PromoPeriod?> UpdateAsync(PromoPeriod item, CancellationToken cancellationToken = default)
     {
-        _dbContext.PromoPeriods
+        _dbCtx.PromoPeriods
             .Where(p => p.Id == item.Id)
             .ExecuteUpdateAsync(calls => calls
                 .SetProperty(period => period.EndDate, item.EndDate)
@@ -19,7 +19,7 @@ public class PromoPeriodRepository(AdminServicesMenuDbContext dbContext)
     }
 
     public override Task DeleteAsync(string itemId, CancellationToken cancellationToken = default) 
-        => _dbContext.PromoPeriods
+        => _dbCtx.PromoPeriods
             .Where(p => p.Id == itemId)
             .ExecuteDeleteAsync(cancellationToken);
 }

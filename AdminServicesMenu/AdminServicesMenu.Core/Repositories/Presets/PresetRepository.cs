@@ -3,14 +3,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AdminServicesMenu.Core.Repositories.Presets;
 
-public class PresetRepository(AdminServicesMenuDbContext dbContext) 
-    : EntityRepository<Preset>(dbContext), IPresetRepository
+public class PresetRepository(AdminServicesMenuDbContext dbCtx) 
+    : EntityRepository<Preset>(dbCtx), IPresetRepository
 {
-    private readonly AdminServicesMenuDbContext _dbContext = dbContext;
+    private readonly AdminServicesMenuDbContext _dbCtx = dbCtx;
 
     public override Task<Preset?> UpdateAsync(Preset item, CancellationToken cancellationToken = default)
     {
-        _dbContext.Presets
+        _dbCtx.Presets
             .Where(preset => preset.Id == item.Id)
             .ExecuteUpdateAsync(calls => 
                 calls.SetProperty(preset => preset.Favorites, item.Favorites), cancellationToken);
@@ -18,7 +18,7 @@ public class PresetRepository(AdminServicesMenuDbContext dbContext)
     }
 
     public override Task DeleteAsync(string itemId, CancellationToken cancellationToken = default)
-        => _dbContext.Presets
+        => _dbCtx.Presets
             .Where(preset => preset.Id == itemId)
             .ExecuteDeleteAsync(cancellationToken);
 }

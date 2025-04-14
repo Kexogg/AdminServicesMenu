@@ -4,14 +4,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AdminServicesMenu.Core.Repositories.Services;
 
-public class ServicesRepository(AdminServicesMenuDbContext dbContext) : 
-    EntityRepository<Service>(dbContext), IServicesRepository
+public class ServicesRepository(AdminServicesMenuDbContext dbCtx) : 
+    EntityRepository<Service>(dbCtx), IServicesRepository
 {
-    private readonly AdminServicesMenuDbContext _dbContext = dbContext;
+    private readonly AdminServicesMenuDbContext _dbCtx = dbCtx;
 
     public override Task<Service?> UpdateAsync(Service item, CancellationToken cancellationToken = default)
     {
-        _dbContext.Services
+        _dbCtx.Services
             .Where(s => s.Id == item.Id)
             .ExecuteUpdateAsync(calls => calls
                 .SetProperty(s => s.PromoPeriod, item.PromoPeriod), cancellationToken);
@@ -19,7 +19,7 @@ public class ServicesRepository(AdminServicesMenuDbContext dbContext) :
     }
     
     public override Task DeleteAsync(string itemId, CancellationToken cancellationToken = default) =>
-        _dbContext.Services
+        _dbCtx.Services
             .Where(p => p.Id == itemId)
             .ExecuteDeleteAsync(cancellationToken);
 }
