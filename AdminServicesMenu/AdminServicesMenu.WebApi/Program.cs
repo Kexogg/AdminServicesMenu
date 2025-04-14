@@ -21,6 +21,7 @@ builder.Services.AddSwaggerGen(option =>
 builder.Services.AddControllers();
 
 builder.Services.Configure<RouteOptions>(options => { options.LowercaseUrls = true; });
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
