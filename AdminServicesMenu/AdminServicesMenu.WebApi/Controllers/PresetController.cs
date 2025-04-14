@@ -15,7 +15,10 @@ public class PresetController : ControllerBase
         _presetService = presetService;
     }
     
-    
+    /// <summary>
+    /// Получить пресет по его id
+    /// </summary>
+    /// <param name="id">идентификатор пресета</param>
     [HttpGet("{id}", Name = nameof(GetCurrentPreset))]
     [Produces("application/json", "application/xml")]
     public async Task<ActionResult<PresetReponseDTO>> GetCurrentPreset([FromRoute] string id)
@@ -28,6 +31,11 @@ public class PresetController : ControllerBase
         return Ok(await obj);
     }
 
+    /// <summary>
+    /// Получить пресеты
+    /// </summary>
+    /// <param name="pageNumber">Номер страницы, по умолчанию 1</param>
+    /// <param name="pageSize">Размер страницы, по умолчанию 20</param>
     [HttpGet(Name = nameof(GetPresets))]
     [Produces("application/json", "application/xml")]
     public ActionResult<IEnumerable<PresetReponseDTO>> GetPresets([FromQuery]int pageNumber = 1, [FromQuery]int pageSize = 10)
@@ -59,6 +67,10 @@ public class PresetController : ControllerBase
         return Ok();
     }
 
+    /// <summary>
+    /// Создать пресет
+    /// </summary>
+    /// <param name="preset">Данные для создания пресета</param>
     [HttpPost]
     [Produces("application/json", "application/xml")]
     public async Task<ActionResult<PresetReponseDTO>> CreatePreset([FromBody]PresetCreateDTO? preset)
@@ -71,6 +83,10 @@ public class PresetController : ControllerBase
         return Ok(await obj);
     }
 
+    /// <summary>
+    /// Удалить пресета
+    /// </summary>
+    /// <param name="id">идентификатор пресета</param>
     [HttpDelete("{id}")]
     [Produces("application/json", "application/xml")]
     public async Task<ActionResult<PresetReponseDTO>> DeletePreset([FromQuery]string id)
@@ -82,6 +98,12 @@ public class PresetController : ControllerBase
         return Ok();
     }
     
+    /// <summary>
+    /// Обновить пресет
+    /// </summary>
+    /// <param name="id">Идентификатор пресета</param>
+    /// <param name="preset">Обновленные данные пресета</param>
+    /// <returns></returns>
     [HttpPut("{id}")]
     [Produces("application/json", "application/xml")]
     public async Task<ActionResult<PresetReponseDTO>> UpdatePreset([FromRoute] string id, [FromBody] PresetUpdateDTO? preset)
