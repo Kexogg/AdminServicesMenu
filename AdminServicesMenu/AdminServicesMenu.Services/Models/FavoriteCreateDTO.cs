@@ -1,3 +1,3 @@
 namespace AdminServicesMenu.Core.Models;
 
-public record FavoriteCreateDTO();
+public record FavoriteCreateDTO(string ServiceKey);

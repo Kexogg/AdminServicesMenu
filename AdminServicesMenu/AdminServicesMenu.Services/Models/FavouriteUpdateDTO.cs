@@ -1,3 +1,3 @@
 namespace AdminServicesMenu.Core.Models;
 
-public record FavouriteUpdateDTO(string Id);
+public record FavouriteUpdateDTO(string ServiceKey);

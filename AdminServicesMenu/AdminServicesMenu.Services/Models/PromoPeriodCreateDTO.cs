@@ -1,3 +1,3 @@
 namespace AdminServicesMenu.Core.Models;
 
-public record PromoPeriodCreateDTO();
+public record PromoPeriodCreateDTO(DateTime StartDate, DateTime EndDate);
