@@ -1,6 +1,6 @@
 namespace AdminServicesMenu.Core.Services;
 
-public class FavoriteService : IEntityServices
+public class FavoriteService
 {
     public void Create()
     {

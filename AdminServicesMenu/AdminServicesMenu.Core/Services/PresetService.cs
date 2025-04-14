@@ -1,6 +1,6 @@
 namespace AdminServicesMenu.Core.Services;
 
-public class PresetService : IEntityServices
+public class PresetService
 {
     public void Create()
     {
