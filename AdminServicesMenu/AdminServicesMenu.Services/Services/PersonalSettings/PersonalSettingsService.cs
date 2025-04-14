@@ -12,7 +12,7 @@ public class PersonalSettingsService(IPersonalSettingRepository repository) : IP
         throw new RankException();
     }
 
-    public Task<IPersonalSettingsService> CreateAsync(PersonalSettingsCreateDTO settings)
+    public Task<PersonalSettingsCreateDTO> CreateAsync(PersonalSettingsCreateDTO settings)
     {
         throw new NotImplementedException();
     }
