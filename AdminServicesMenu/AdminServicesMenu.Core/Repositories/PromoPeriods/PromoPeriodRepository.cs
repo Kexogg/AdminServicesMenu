@@ -8,15 +8,12 @@ public class PromoPeriodRepository(AdminServicesMenuDbContext dbContext) : IProm
 {
     public IQueryable<PromoPeriod> GetAll() => 
         dbContext.PromoPeriods.AsQueryable();
-    
 
     public Task AddAsync(PromoPeriod item, CancellationToken cancellationToken = default) => 
         dbContext.PromoPeriods.AddAsync(item, cancellationToken).AsTask();
 
-
     public Task AddAllAsync(IEnumerable<PromoPeriod> entities, CancellationToken cancellationToken = default) => 
         dbContext.PromoPeriods.AddRangeAsync(entities, cancellationToken);
-
 
     public Task UpdateAsync(PromoPeriod item, CancellationToken cancellationToken = default) =>
         dbContext.PromoPeriods
