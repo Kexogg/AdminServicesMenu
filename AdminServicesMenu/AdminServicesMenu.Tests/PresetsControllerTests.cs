@@ -1,5 +1,5 @@
-using AdminServicesMenu.Core.Models;
-using AdminServicesMenu.Core.Services;
+using AdminServicesMenu.Services.Models;
+using AdminServicesMenu.Services.Services.Preset;
 using AdminServicesMenu.WebApi.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Moq;

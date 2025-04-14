@@ -1,9 +1,6 @@
-using AdminServicesMenu.Core.Domain;
-using AdminServicesMenu.Core.Models;
-using AdminServicesMenu.Core.Repositories.Presets;
-using AdminServicesMenu.Core.Services;
+using AdminServicesMenu.Services.Models;
+using AdminServicesMenu.Services.Services.Preset;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace AdminServicesMenu.WebApi.Controllers;
 
@@ -80,10 +77,8 @@ public class PresetController : ControllerBase
     {
         if (string.IsNullOrEmpty(id))
             return BadRequest();
-        
-        var obj = _presetService.DeleteAsync(id);
-    
-        return Ok(await obj);
+        await _presetService.DeleteAsync(id);
+        return Ok();
     }
     
     [HttpPut("{id}")]
@@ -93,7 +88,7 @@ public class PresetController : ControllerBase
         if (string.IsNullOrEmpty(id) || preset is null)
             return BadRequest();
         
-        var obj = _presetService.UpdateAsync(preset);
+        var obj = _presetService.UpdateAsync(id, preset);
 
         return Ok(await obj);
     }
