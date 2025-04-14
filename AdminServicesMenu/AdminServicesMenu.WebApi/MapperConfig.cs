@@ -10,7 +10,7 @@ public class MapperConfig : Profile
     {
         CreateMap<PresetCreateDTO, Preset>();
         CreateMap<PresetUpdateDTO, Preset>();
-        CreateMap<PresetReponseDTO, Preset>();
+        CreateMap<PresetResponseDTO, Preset>();
         CreateMap<PersonalSettingsCreateDTO, PersonalSettings>();
         CreateMap<PersonalSettingsUpdateDTO, PersonalSettings>();
         CreateMap<PersonalSettingsResponseDTO, PersonalSettings>();
