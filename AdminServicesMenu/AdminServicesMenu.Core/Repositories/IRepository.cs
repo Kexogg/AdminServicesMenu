@@ -9,6 +9,12 @@ namespace AdminServicesMenu.Core.Repositories;
 public interface IRepository<TEntity> where TEntity : class
 {
     /// <summary>
+    ///     Получаем кол-во объектов ДЛЯ ЛЕНИ
+    /// </summary>
+    /// <returns>Кол-во объектов ДЛЯ ЛЕНИ</returns>
+    long GetTotalCount();
+    
+    /// <summary>
     ///     Получение всех сущностей их хранилища
     /// </summary>
     /// <returns>Все сущности в хранилище</returns>
@@ -39,9 +45,9 @@ public interface IRepository<TEntity> where TEntity : class
     /// <summary>
     ///     Удаление сущности
     /// </summary>
-    /// <param name="item">Сущность</param>
+    /// <param name="itemId">ID Сущности</param>
     /// <param name="cancellationToken">Токен отмены</param>
-    Task DeleteAsync(TEntity item, CancellationToken cancellationToken = default);
+    Task DeleteAsync(string itemId, CancellationToken cancellationToken = default);
 
     /// <summary>
     ///     Удаление указанных сущностей

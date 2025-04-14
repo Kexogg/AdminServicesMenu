@@ -15,8 +15,8 @@ public class PersonalSettingsRepository(AdminServicesMenuDbContext dbContext) :
                 .SetProperty(settings => settings.Favorites, item.Favorites)
                 .SetProperty(settings => settings.ModifiedAt, item.ModifiedAt), cancellationToken);
 
-    public override Task DeleteAsync(PersonalSettings item, CancellationToken cancellationToken = default)
+    public override Task DeleteAsync(string itemId, CancellationToken cancellationToken = default)
         => _dbContext.PersonalSettings
-            .Where(settings => settings.Id == item.Id)
+            .Where(settings => settings.Id == itemId)
             .ExecuteDeleteAsync(cancellationToken);
 }
