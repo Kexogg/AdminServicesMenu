@@ -1,8 +1,7 @@
 using AdminServicesMenu.Core;
-using AdminServicesMenu.Core.Domain;
-using AdminServicesMenu.Core.Models;
 using AdminServicesMenu.Core.Repositories;
-using AdminServicesMenu.Services.Models;
+using AdminServicesMenu.WebApi;
+using AutoMapper;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -31,22 +30,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddRepositories();
 builder.Services.AddDbContext<AdminServicesMenuDbContext>();
 
-builder.Services.AddAutoMapper(cfg =>
+var mapper = new MapperConfiguration(config =>
 {
-    cfg.CreateMap<PresetCreateDTO, Preset>();
-    cfg.CreateMap<PresetUpdateDTO, Preset>();
-    cfg.CreateMap<PresetReponseDTO, Preset>();
-    cfg.CreateMap<PersonalSettingsCreateDTO, PersonalSettings>();
-    cfg.CreateMap<PersonalSettingsUpdateDTO, PersonalSettings>();
-    cfg.CreateMap<PersonalSettingsResponseDTO, PersonalSettings>();
-    cfg.CreateMap<PromoPeriodCreateDTO, PromoPeriod>();
-    cfg.CreateMap<PromoPeriodUpdateDTO, PromoPeriod>();
-    cfg.CreateMap<ServiceCreateDTO, Service>();
-    cfg.CreateMap<ServiceUpdateDTO, Service>();
-    cfg.CreateMap<ServiceResponseDTO, Service>();
-    cfg.CreateMap<FavouriteUpdateDTO, Favorite>();
-    cfg.CreateMap<FavoriteCreateDTO, Favorite>();
-});
+    config.AddProfile(new MapperConfig());
+}).CreateMapper();
+
+builder.Services.AddSingleton(mapper);
 
 var app = builder.Build();
 
