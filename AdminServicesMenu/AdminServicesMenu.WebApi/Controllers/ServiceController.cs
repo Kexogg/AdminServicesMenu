@@ -8,7 +8,7 @@ public class ServiceController : ControllerBase
 {
     [HttpGet]
     [Produces("application/json", "application/xml")]
-    public async Task<IActionResult> GetAll([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+    public async Task<IActionResult> GetAllServices([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
     {
         var data = Enumerable.Range(1, 100).Skip((page - 1) * pageSize).Take(pageSize);
 
@@ -23,7 +23,7 @@ public class ServiceController : ControllerBase
 
     [HttpGet("{id}")]
     [Produces("application/json", "application/xml")]
-    public async Task<IActionResult> Get(string id)
+    public async Task<IActionResult> GetService(string id)
     {
         return Ok();
     }
@@ -31,21 +31,21 @@ public class ServiceController : ControllerBase
 
     [HttpPost]
     [Produces("application/json", "application/xml")]
-    public async Task<IActionResult> Create([FromBody] object model)
+    public async Task<IActionResult> CreateService([FromBody] object model)
     {
         return Ok();
     }
 
     [HttpDelete("{id}")]
     [Produces("application/json", "application/xml")]
-    public async Task<IActionResult> Delete(string id)
+    public async Task<IActionResult> DeleteService(string id)
     {
         return Ok();
     }
 
     [HttpPut("{id}")]
     [Produces("application/json", "application/xml")]
-    public async Task<IActionResult> Update(string id, [FromBody] object model)
+    public async Task<IActionResult> UpdateService(string id, [FromBody] object model)
     {
         return Ok();
     }
