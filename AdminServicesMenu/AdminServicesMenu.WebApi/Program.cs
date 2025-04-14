@@ -1,5 +1,6 @@
 using AdminServicesMenu.Core;
 using AdminServicesMenu.Core.Repositories;
+using AdminServicesMenu.Services.Services;
 using AdminServicesMenu.WebApi;
 using AutoMapper;
 using Microsoft.OpenApi.Models;
@@ -28,6 +29,7 @@ builder.Services.Configure<RouteOptions>(options => { options.LowercaseUrls = tr
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddRepositories();
+builder.Services.AddServices();
 builder.Services.AddDbContext<AdminServicesMenuDbContext>();
 
 var mapper = new MapperConfiguration(config =>
