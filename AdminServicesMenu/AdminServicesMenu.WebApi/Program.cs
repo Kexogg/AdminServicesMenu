@@ -28,6 +28,20 @@ builder.Services.Configure<RouteOptions>(options => { options.LowercaseUrls = tr
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddRepositories();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        corsPolicyBuilder =>
+        {
+            corsPolicyBuilder
+                .AllowAnyOrigin()
+                .WithMethods("POST", "GET", "DELETE", "PUT")
+                .AllowAnyHeader()
+                .SetIsOriginAllowedToAllowWildcardSubdomains()
+                .AllowCredentials();
+        });
+});
+
 builder.Services.AddDbContext<AdminServicesMenuDbContext>();
 
 var mapper = new MapperConfiguration(config =>
@@ -52,5 +66,4 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
 await app.RunAsync();
