@@ -1,6 +1,6 @@
-using AdminServicesMenu.Core.Models;
+using AdminServicesMenu.Services.Models;
 
-namespace AdminServicesMenu.Core.Services;
+namespace AdminServicesMenu.Services.Services;
 
 public interface IPresetService
 {

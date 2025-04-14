@@ -1,3 +1,3 @@
 namespace AdminServicesMenu.Services.Models;
 
-public record PersonalSettingsUpdateDTO();
+public record ServiceCreateDTO();

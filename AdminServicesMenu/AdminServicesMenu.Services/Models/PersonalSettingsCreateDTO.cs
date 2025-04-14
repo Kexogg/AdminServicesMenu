@@ -1,3 +1,3 @@
-namespace AdminServicesMenu.Core.Models;
+namespace AdminServicesMenu.Services.Models;
 
 public record PersonalSettingsCreateDTO();
