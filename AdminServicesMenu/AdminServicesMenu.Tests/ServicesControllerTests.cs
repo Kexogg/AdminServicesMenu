@@ -20,14 +20,14 @@ namespace AdminServicesMenu.Tests
         [Test]
         public async Task GetAll_ShouldReturnOkResult()
         {
-            var result = await _controller.GetAll();
+            var result = await _controller.GetAllServices();
             Assert.That(result, Is.TypeOf<OkObjectResult>());
         }
 
         [Test]
         public async Task Get_ShouldReturnOkResult()
         {
-            var result = await _controller.Get(Id);
+            var result = await _controller.GetService(Id);
             Assert.That(result, Is.TypeOf<OkObjectResult>());
         }
 
@@ -35,7 +35,7 @@ namespace AdminServicesMenu.Tests
         public async Task Create_ShouldReturnOkResult()
         {
             var model = new { dummy = "value" };
-            var result = await _controller.Create(model);
+            var result = await _controller.CreateService(model);
             Assert.That(result, Is.TypeOf<OkObjectResult>());
         }
 
@@ -43,14 +43,14 @@ namespace AdminServicesMenu.Tests
         public async Task Update_ShouldReturnOkResult()
         {
             var model = new { dummy = "value" };
-            var result = await _controller.Update(Id, model);
+            var result = await _controller.UpdateService(Id, model);
             Assert.That(result, Is.TypeOf<OkObjectResult>());
         }
 
         [Test]
         public async Task Delete_ShouldReturnOkResult()
         {
-            var result = await _controller.Delete(Id);
+            var result = await _controller.DeleteService(Id);
             Assert.That(result, Is.TypeOf<OkObjectResult>());
         }
     }

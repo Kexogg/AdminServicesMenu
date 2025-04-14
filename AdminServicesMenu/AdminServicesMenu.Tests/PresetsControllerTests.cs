@@ -1,12 +1,15 @@
+using AdminServicesMenu.Core.Models;
+using AdminServicesMenu.Core.Services;
 using AdminServicesMenu.WebApi.Controllers;
-using AdminServicesMenu.WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
+using Moq;
 
 namespace AdminServicesMenu.Tests
 {
     [TestFixture]
     public class PresetsControllerTests
     {
+        private Mock<IPresetService> _mockPresetService;
         private const string Id = "testid";
 
         private PresetController _controller;
@@ -14,21 +17,22 @@ namespace AdminServicesMenu.Tests
         [SetUp]
         public void Setup()
         {
-            _controller = new PresetController();
+            _mockPresetService = new Mock<IPresetService>();
+            _controller = new PresetController(_mockPresetService.Object);
         }
 
         [Test]
         public void GetCurrentPreset_ShouldReturnOkResult()
         {
-            ActionResult<PresetDTO> result = _controller.GetCurrentPreset(Id);
+            var result = _controller.GetCurrentPreset(Id);
 
             Assert.That(result.Result, Is.TypeOf<OkObjectResult>());
         }
 
         [Test]
-        public void GetAllPresets_ShouldReturnOkResult()
+        public void GetPresets_ShouldReturnOkResult()
         {
-            ActionResult<PresetDTO> result = _controller.GetAllPresets();
+            var result = _controller.GetPresets();
 
             Assert.That(result.Result, Is.TypeOf<OkObjectResult>());
         }
@@ -36,7 +40,8 @@ namespace AdminServicesMenu.Tests
         [Test]
         public void CreatePreset_ShouldReturnOkResult()
         {
-            ActionResult<PresetDTO> result = _controller.CreatePreset();
+            var dummyPreset = new PresetCreateDTO();
+            var result = _controller.CreatePreset(dummyPreset);
 
             Assert.That(result.Result, Is.TypeOf<OkObjectResult>());
         }
@@ -44,7 +49,7 @@ namespace AdminServicesMenu.Tests
         [Test]
         public void UpdatePreset_ShouldReturnOkResult()
         {
-            var dummyPreset = new PresetDTO();
+            var dummyPreset = new PresetUpdateDTO();
             var result = _controller.UpdatePreset(Id, dummyPreset);
 
             Assert.That(result.Result, Is.TypeOf<OkObjectResult>());
