@@ -5,8 +5,9 @@ namespace AdminServicesMenu.Services.Services;
 public interface IPersonalSettingsService
 {
     Task<PersonalSettingsResponseDTO> FindByIdAsync(string id);
-    Task<PersonalSettingsCreateDTO> CreateAsync();
-    Task<PersonalSettingsUpdateDTO> UpdateAsync();
-    Task<PersonalSettingsUpdateDTO> DeleteAsync(string id);
-    Task<List<PersonalSettingsResponseDTO>> GetAllAsync();
+    Task CreateAsync(PersonalSettingsCreateDTO settings);
+    Task UpdateAsync(string id, PersonalSettingsUpdateDTO settings);
+    Task DeleteAsync(string id);
+    Task<List<PersonalSettingsResponseDTO>> GetAllAsync(int page, int pageSize);
+    Task<long> GetTotalAsync();
 }
