@@ -8,12 +8,16 @@ public class PersonalSettingsRepository(AdminServicesMenuDbContext dbContext) :
 {
     private readonly AdminServicesMenuDbContext _dbContext = dbContext;
 
-    public override Task UpdateAsync(PersonalSettings item, CancellationToken cancellationToken = default)
-        => _dbContext.PersonalSettings
+    public override Task<PersonalSettings?> UpdateAsync(PersonalSettings item,
+        CancellationToken cancellationToken = default)
+    {
+        _dbContext.PersonalSettings
             .Where(settings => settings.Id == item.Id)
             .ExecuteUpdateAsync(calls => calls
                 .SetProperty(settings => settings.Favorites, item.Favorites)
                 .SetProperty(settings => settings.ModifiedAt, item.ModifiedAt), cancellationToken);
+        return GetById(item.Id);
+    }
 
     public override Task DeleteAsync(string itemId, CancellationToken cancellationToken = default)
         => _dbContext.PersonalSettings

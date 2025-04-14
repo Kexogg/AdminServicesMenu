@@ -1,4 +1,5 @@
 ﻿using System.Linq.Expressions;
+using AdminServicesMenu.Core.Domain;
 
 namespace AdminServicesMenu.Core.Repositories;
 
@@ -21,12 +22,19 @@ public interface IRepository<TEntity> where TEntity : class
     IQueryable<TEntity> GetAll();
 
     /// <summary>
+    ///     Получаем объект по id
+    /// </summary>
+    /// <param name="id">ID</param>
+    /// <returns>TEntity</returns>
+    Task<TEntity?> GetById(string id);
+
+    /// <summary>
     ///     Добавление сущности в хранилище
     /// </summary>
     /// <param name="item">Сущность</param>
     /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Сущность после добавления</returns>
-    Task AddAsync(TEntity item, CancellationToken cancellationToken = default);
+    Task<TEntity> AddAsync(TEntity item, CancellationToken cancellationToken = default);
 
     /// <summary>
     ///     Добавление указанных сущностей
@@ -40,7 +48,7 @@ public interface IRepository<TEntity> where TEntity : class
     /// </summary>
     /// <param name="item">Сущность</param>
     /// <param name="cancellationToken">Токен отмены</param>
-    Task UpdateAsync(TEntity item, CancellationToken cancellationToken = default);
+    Task<TEntity?> UpdateAsync(TEntity item, CancellationToken cancellationToken = default);
 
     /// <summary>
     ///     Удаление сущности

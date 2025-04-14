@@ -8,11 +8,14 @@ public class PresetRepository(AdminServicesMenuDbContext dbContext)
 {
     private readonly AdminServicesMenuDbContext _dbContext = dbContext;
 
-    public override Task UpdateAsync(Preset item, CancellationToken cancellationToken = default)
-        => _dbContext.Presets
+    public override Task<Preset?> UpdateAsync(Preset item, CancellationToken cancellationToken = default)
+    {
+        _dbContext.Presets
             .Where(preset => preset.Id == item.Id)
             .ExecuteUpdateAsync(calls => 
                 calls.SetProperty(preset => preset.Favorites, item.Favorites), cancellationToken);
+        return GetById(item.Id);
+    }
 
     public override Task DeleteAsync(string itemId, CancellationToken cancellationToken = default)
         => _dbContext.Presets
