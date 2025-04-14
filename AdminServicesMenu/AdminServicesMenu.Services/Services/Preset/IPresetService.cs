@@ -6,9 +6,9 @@ public interface IPresetService
 {
     long GetCount();
     Task DeleteAsync(string id);
-    Task<PresetCreateDTO> CreateAsync(PresetCreateDTO preset);
-    Task<PresetCreateDTO> UpdateAsync(string id, PresetUpdateDTO preset);
+    Task<PresetReponseDTO> CreateAsync(PresetCreateDTO preset);
+    Task<PresetReponseDTO> UpdateAsync(string id, PresetUpdateDTO preset);
     
     Task<PresetReponseDTO> GetByIdAsync(string id);
-    Task<List<PresetUpdateDTO>> GetAllAsync(in int page, int pageSize);
+    Task<List<PresetReponseDTO>> GetAllAsync(in int page, int pageSize);
 }

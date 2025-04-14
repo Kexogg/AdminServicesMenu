@@ -12,12 +12,12 @@ public class PresetService(IPresetRepository repository) : IPresetService
         throw new NotImplementedException();
     }
 
-    public Task<PresetCreateDTO> CreateAsync(PresetCreateDTO preset)
+    public Task<PresetReponseDTO> CreateAsync(PresetCreateDTO preset)
     {
         throw new NotImplementedException();
     }
 
-    public Task<PresetCreateDTO> UpdateAsync(string id, PresetUpdateDTO preset)
+    public Task<PresetReponseDTO> UpdateAsync(string id, PresetUpdateDTO preset)
     {
         throw new NotImplementedException();
     }
@@ -27,7 +27,7 @@ public class PresetService(IPresetRepository repository) : IPresetService
         throw new NotImplementedException();
     }
 
-    public Task<List<PresetUpdateDTO>> GetAllAsync(in int page, int pageSize)
+    public Task<List<PresetReponseDTO>> GetAllAsync(in int page, int pageSize)
     {
         throw new NotImplementedException();
     }
