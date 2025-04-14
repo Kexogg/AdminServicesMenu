@@ -1,7 +1,7 @@
 using AdminServicesMenu.Core.Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace AdminServicesMenu.Core.Repositories.PersonalSettingsRepository;
+namespace AdminServicesMenu.Core.Repositories.SettingsRepository;
 
 public class PersonalSettingsRepository(AdminServicesMenuDbContext dbContext) : 
     EntityRepository<PersonalSettings>(dbContext), IPersonalSettingRepository
