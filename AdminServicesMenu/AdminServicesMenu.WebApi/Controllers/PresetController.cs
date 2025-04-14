@@ -20,14 +20,14 @@ public class PresetController : ControllerBase
     }
     
     
-    [HttpGet("{Id}", Name = nameof(GetCurrentPreset))]
+    [HttpGet("{id}", Name = nameof(GetCurrentPreset))]
     [Produces("application/json", "application/xml")]
-    public async Task<ActionResult<PresetDTO>> GetCurrentPreset([FromRoute] string Id)
+    public async Task<ActionResult<PresetDTO>> GetCurrentPreset([FromRoute] string id)
     {
-        if (string.IsNullOrEmpty(Id))
+        if (string.IsNullOrEmpty(id))
             return BadRequest();
         
-        var obj = _presetService.GetByIdAsync(Id);
+        var obj = _presetService.GetByIdAsync(id);
         
         return Ok(await obj);
     }
@@ -65,7 +65,7 @@ public class PresetController : ControllerBase
 
     [HttpPost]
     [Produces("application/json", "application/xml")]
-    public async Task<ActionResult<PresetDTO>> CreatePreset([FromBody]PresetCreateDTO preset)
+    public async Task<ActionResult<PresetDTO>> CreatePreset([FromBody]PresetCreateDTO? preset)
     {
         if (preset is null)
             return BadRequest();
@@ -75,23 +75,23 @@ public class PresetController : ControllerBase
         return Ok(await obj);
     }
 
-    [HttpDelete("{Id}")]
+    [HttpDelete("{id}")]
     [Produces("application/json", "application/xml")]
-    public async Task<ActionResult<PresetDTO>> DeletePreset([FromQuery]string Id)
+    public async Task<ActionResult<PresetDTO>> DeletePreset([FromQuery]string id)
     {
-        if (string.IsNullOrEmpty(Id))
+        if (string.IsNullOrEmpty(id))
             return BadRequest();
         
-        var obj = _presetService.DeleteAsync(Id);
+        var obj = _presetService.DeleteAsync(id);
     
         return Ok(await obj);
     }
     
-    [HttpPut("{Id}")]
+    [HttpPut("{id}")]
     [Produces("application/json", "application/xml")]
-    public async Task<ActionResult<PresetDTO>> UpdatePreset([FromRoute] string Id, [FromBody] PresetUpdateDTO preset)
+    public async Task<ActionResult<PresetDTO>> UpdatePreset([FromRoute] string id, [FromBody] PresetUpdateDTO? preset)
     {
-        if (string.IsNullOrEmpty(Id) || preset is null)
+        if (string.IsNullOrEmpty(id) || preset is null)
             return BadRequest();
         
         var obj = _presetService.UpdateAsync(preset);
