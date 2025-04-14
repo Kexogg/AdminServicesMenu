@@ -2,6 +2,6 @@
 
 public record PersonalSettings(string Id) : Entity(Id)
 {
-    public Favorite[] Favorites { get; set; } = Array.Empty<Favorite>();
+    public List<Favorite> Favorites { get; set; } = [];
     public DateTime ModifiedAt { get; set; }
 }

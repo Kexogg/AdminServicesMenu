@@ -2,5 +2,10 @@
 
 public record Preset(string Id) : Entity(Id)
 {
-    public required Favorite[] Favorites { get; set; } = Array.Empty<Favorite>();
+    public Preset() : this(Guid.Empty.ToString())
+    {
+        
+    }
+    
+    public required List<Favorite> Favorites { get; set; } = [];
 }
