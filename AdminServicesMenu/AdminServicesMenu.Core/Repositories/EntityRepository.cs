@@ -12,12 +12,9 @@ public abstract class EntityRepository<TEntity>(AdminServicesMenuDbContext dbCtx
 
     public IQueryable<TEntity> GetAll()
         => dbCtx.Set<TEntity>().ToList().AsQueryable();
-
-    // public Task<TEntity?> GetById(string id)
-    //     => dbCtx.Set<TEntity>().FindAsync(id).AsTask();
-    //
-    public Task<TEntity?> GetById(string id)
-        => Task.Run(() => dbCtx.Set<TEntity>().First());
+    
+    public Task<TEntity?> GetById(string id) 
+        => dbCtx.Set<TEntity>().FindAsync(id).AsTask();
 
     public Task<TEntity> AddAsync(TEntity item, CancellationToken cancellationToken = default)
     {
