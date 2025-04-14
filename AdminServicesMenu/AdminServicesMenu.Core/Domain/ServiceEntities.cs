@@ -21,8 +21,8 @@ public class PromoPeriod
 {
     private readonly DateTime? _startDate;
     private readonly DateTime? _endDate;
-    
-    public string Id => null!;
+
+    public string Id;
     
     public DateTime? StartDate
     {
