@@ -6,6 +6,9 @@ namespace AdminServicesMenu.Core.Repositories;
 public abstract class EntityRepository<TEntity>(AdminServicesMenuDbContext dbContext) 
     : IRepository<TEntity> where TEntity : class
 {
+    public long GetTotalCount() 
+        => dbContext.Set<TEntity>().Count();
+
     public IQueryable<TEntity> GetAll()
         => dbContext.Set<TEntity>().ToList().AsQueryable();
 

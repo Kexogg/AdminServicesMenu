@@ -9,6 +9,12 @@ namespace AdminServicesMenu.Core.Repositories;
 public interface IRepository<TEntity> where TEntity : class
 {
     /// <summary>
+    ///     Получаем кол-во объектов ДЛЯ ЛЕНИ
+    /// </summary>
+    /// <returns>Кол-во объектов ДЛЯ ЛЕНИ</returns>
+    long GetTotalCount();
+    
+    /// <summary>
     ///     Получение всех сущностей их хранилища
     /// </summary>
     /// <returns>Все сущности в хранилище</returns>
