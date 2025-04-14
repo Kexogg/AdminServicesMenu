@@ -1,5 +1,8 @@
+using AdminServicesMenu.Services.Models;
+using AdminServicesMenu.Services.Services.Services;
 using AdminServicesMenu.WebApi.Controllers;
 using Microsoft.AspNetCore.Mvc;
+using Moq;
 
 namespace AdminServicesMenu.Tests
 {
@@ -7,6 +10,7 @@ namespace AdminServicesMenu.Tests
     [TestFixture]
     public class ServicesControllerTests
     {
+        private Mock<IServiceService> _mockServiceService;
         private const string Id = "testid";
 
         private ServiceController _controller;
@@ -14,7 +18,8 @@ namespace AdminServicesMenu.Tests
         [SetUp]
         public void Setup()
         {
-            _controller = new ServiceController();
+            _mockServiceService = new Mock<IServiceService>();
+            _controller = new ServiceController(_mockServiceService.Object);
         }
 
         [Test]
@@ -34,7 +39,8 @@ namespace AdminServicesMenu.Tests
         [Test]
         public async Task Create_ShouldReturnOkResult()
         {
-            var model = new { dummy = "value" };
+            var model = new ServiceCreateDTO("abc","abc", "abc", 
+                "abc","abc",false);
             var result = await _controller.CreateService(model);
             Assert.That(result, Is.TypeOf<OkResult>());
         }
@@ -42,11 +48,12 @@ namespace AdminServicesMenu.Tests
         [Test]
         public async Task Update_ShouldReturnOkResult()
         {
-            var model = new { dummy = "value" };
+            var model = new ServiceUpdateDTO("abc","abc", "abc", 
+                "abc","abc",false);
             var result = await _controller.UpdateService(Id, model);
             Assert.That(result, Is.TypeOf<OkResult>());
         }
-
+        
         [Test]
         public async Task Delete_ShouldReturnOkResult()
         {

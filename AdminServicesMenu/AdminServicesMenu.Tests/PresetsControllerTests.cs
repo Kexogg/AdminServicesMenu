@@ -40,7 +40,7 @@ namespace AdminServicesMenu.Tests
         [Test]
         public void CreatePreset_ShouldReturnOkResult()
         {
-            var dummyPreset = new PresetCreateDTO();
+            var dummyPreset = new PresetCreateDTO([]);
             var result = _controller.CreatePreset(dummyPreset);
 
             Assert.That(result.Result.Result, Is.TypeOf<OkObjectResult>());
@@ -49,7 +49,7 @@ namespace AdminServicesMenu.Tests
         [Test]
         public void UpdatePreset_ShouldReturnOkResult()
         {
-            var dummyPreset = new PresetUpdateDTO();
+            var dummyPreset = new PresetUpdateDTO([]);
             var result = _controller.UpdatePreset(Id, dummyPreset);
 
             Assert.That(result.Result.Result, Is.TypeOf<OkObjectResult>());
@@ -60,7 +60,7 @@ namespace AdminServicesMenu.Tests
         {
             var result = _controller.DeletePreset(Id);
 
-            Assert.That(result.Result.Result, Is.TypeOf<OkObjectResult>());
+            Assert.That(result.Result.Result, Is.TypeOf<OkResult>());
         }
     }
 }
