@@ -1,6 +1,3 @@
 namespace AdminServicesMenu.Services.Models;
 
-public interface ServiceUpdateDTO
-{
-    
-}
+public record ServiceUpdateDTO(string Key, string Title, string Subtitle, string Link, string Icon, bool? NoReferrer);

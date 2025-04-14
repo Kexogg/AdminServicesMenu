@@ -77,6 +77,7 @@ public class PresetController : ControllerBase
     {
         if (string.IsNullOrEmpty(id))
             return BadRequest();
+        
         await _presetService.DeleteAsync(id);
         return Ok();
     }
