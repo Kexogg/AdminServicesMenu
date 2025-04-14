@@ -26,7 +26,7 @@ namespace AdminServicesMenu.Tests
         {
             var result = _controller.GetCurrentPreset(Id);
 
-            Assert.That(result.Result, Is.TypeOf<OkObjectResult>());
+            Assert.That(result.Result.Result, Is.TypeOf<OkObjectResult>());
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace AdminServicesMenu.Tests
         {
             var result = _controller.GetPresets();
 
-            Assert.That(result.Result, Is.TypeOf<OkObjectResult>());
+            Assert.That(result.Result, Is.TypeOf<OkResult>());
         }
 
         [Test]
@@ -43,7 +43,7 @@ namespace AdminServicesMenu.Tests
             var dummyPreset = new PresetCreateDTO();
             var result = _controller.CreatePreset(dummyPreset);
 
-            Assert.That(result.Result, Is.TypeOf<OkObjectResult>());
+            Assert.That(result.Result.Result, Is.TypeOf<OkObjectResult>());
         }
 
         [Test]
@@ -52,7 +52,7 @@ namespace AdminServicesMenu.Tests
             var dummyPreset = new PresetUpdateDTO();
             var result = _controller.UpdatePreset(Id, dummyPreset);
 
-            Assert.That(result.Result, Is.TypeOf<OkObjectResult>());
+            Assert.That(result.Result.Result, Is.TypeOf<OkObjectResult>());
         }
 
         [Test]
@@ -60,7 +60,7 @@ namespace AdminServicesMenu.Tests
         {
             var result = _controller.DeletePreset(Id);
 
-            Assert.That(result.Result, Is.TypeOf<OkObjectResult>());
+            Assert.That(result.Result.Result, Is.TypeOf<OkObjectResult>());
         }
     }
 }
