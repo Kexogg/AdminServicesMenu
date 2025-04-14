@@ -1,7 +1,7 @@
 import type {ConfigFile} from "@rtk-query/codegen-openapi";
 
 const config: ConfigFile = {
-    schemaFile: "http://localhost:5054/swagger/v1/swagger.json",
+    schemaFile: "http://localhost:5251/swagger/v1/swagger.json",
     apiFile: "./src/features/api/emptyApi.ts",
     apiImport: "emptySplitApi",
     outputFile: "./src/features/api/api.gen.ts",
