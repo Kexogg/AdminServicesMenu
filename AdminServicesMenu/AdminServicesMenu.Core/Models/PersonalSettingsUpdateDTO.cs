@@ -1,3 +1,3 @@
-namespace AdminServicesMenu.WebApi.Models;
+namespace AdminServicesMenu.Core.Models;
 
 public record PersonalSettingsUpdateDTO();
