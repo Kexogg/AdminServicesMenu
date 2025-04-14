@@ -28,8 +28,6 @@ public class AdminServicesMenuDbContext : DbContext
 
         builder.Entity<Service>()
             .HasKey(x => x.Id);
-
-        builder.Entity<Favorite>().HasNoKey();
     }
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
