@@ -19,4 +19,7 @@ public class PersonalSettingsRepository(AdminServicesMenuDbContext dbContext) :
         => _dbContext.PersonalSettings
             .Where(settings => settings.Id == item.Id)
             .ExecuteDeleteAsync(cancellationToken);
+
+    public long GetTotalCount()
+        => _dbContext.PersonalSettings.Count();
 }

@@ -4,10 +4,12 @@ namespace AdminServicesMenu.Services.Services;
 
 public interface IPresetService
 {
-    Task<PresetReponseDTO> GetByIdAsync(string id);
+    Task<long> GetTotalAsync();
+    
+    Task DeleteAsync(string id);
     Task CreateAsync(PresetCreateDTO preset);
     Task UpdateAsync(PresetUpdateDTO preset);
-    Task DeleteAsync(string id);
+    
+    Task<PresetReponseDTO> GetByIdAsync(string id);
     Task<List<PresetUpdateDTO>> GetAllAsync(in int page, int pageSize);
-    Task<long> GetTotalAsync();
 }
