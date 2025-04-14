@@ -7,23 +7,17 @@ public class PresetService(IPresetRepository repository) : IPresetService
 {
 
     public long GetCount() => repository.GetTotalCount();
-
     public Task DeleteAsync(string id)
     {
         throw new NotImplementedException();
     }
 
-    public Task CreateAsync(PresetCreateDTO preset)
+    public Task<IPresetService> CreateAsync(PresetCreateDTO preset)
     {
         throw new NotImplementedException();
     }
 
-    public Task UpdateAsync(string id, PresetUpdateDTO preset)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task UpdateAsync(PresetUpdateDTO preset)
+    public Task<PresetCreateDTO> UpdateAsync(string id, PresetUpdateDTO preset)
     {
         throw new NotImplementedException();
     }
