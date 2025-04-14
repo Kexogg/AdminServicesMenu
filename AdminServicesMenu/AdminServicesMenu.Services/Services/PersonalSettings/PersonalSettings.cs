@@ -5,8 +5,7 @@ namespace AdminServicesMenu.Services.Services.PersonalSettings;
 
 public class PersonalSettingsService(IPersonalSettingRepository repository) : IPersonalSettingsService
 {
-    public Task<long> GetTotalAsync()
-        => Task.Run(() => 10l);
+    public long GetCount() => repository.GetTotalCount();
 
     public Task DeleteAsync(string id)
     {

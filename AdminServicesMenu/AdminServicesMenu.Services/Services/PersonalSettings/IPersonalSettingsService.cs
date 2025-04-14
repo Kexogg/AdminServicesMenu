@@ -4,7 +4,7 @@ namespace AdminServicesMenu.Services.Services;
 
 public interface IPersonalSettingsService
 {
-    Task<long> GetTotalAsync();
+    long GetCount();
     
     Task DeleteAsync(string id);
     Task CreateAsync(PersonalSettingsCreateDTO settings);
