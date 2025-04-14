@@ -1,3 +1,5 @@
+using AdminServicesMenu.Core;
+using AdminServicesMenu.Core.Repositories;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,8 +24,19 @@ builder.Services.AddControllers();
 
 builder.Services.Configure<RouteOptions>(options => { options.LowercaseUrls = true; });
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddRepositories();
+builder.Services.AddDbContext<AdminServicesMenuDbContext>();
+
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    scope.ServiceProvider.GetRequiredService<AdminServicesMenuDbContext>();
+}
+
 app.MapControllers();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
