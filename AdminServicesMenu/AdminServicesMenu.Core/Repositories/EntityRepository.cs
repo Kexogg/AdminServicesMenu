@@ -26,5 +26,5 @@ public abstract class EntityRepository<TEntity>(AdminServicesMenuDbContext dbCon
             .ExecuteDeleteAsync(cancellationToken);
     
     public abstract Task UpdateAsync(TEntity item, CancellationToken cancellationToken = default);
-    public abstract Task DeleteAsync(TEntity item, CancellationToken cancellationToken = default);
+    public abstract Task DeleteAsync(string itemId, CancellationToken cancellationToken = default);
 }

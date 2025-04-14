@@ -14,8 +14,8 @@ public class ServicesRepository(AdminServicesMenuDbContext dbContext) :
             .ExecuteUpdateAsync(calls => calls
                 .SetProperty(s => s.PromoPeriod, item.PromoPeriod), cancellationToken);
     
-    public override Task DeleteAsync(Service item, CancellationToken cancellationToken = default) =>
+    public override Task DeleteAsync(string itemId, CancellationToken cancellationToken = default) =>
         _dbContext.Services
-            .Where(p => p.Id == item.Id)
+            .Where(p => p.Id == itemId)
             .ExecuteDeleteAsync(cancellationToken);
 }

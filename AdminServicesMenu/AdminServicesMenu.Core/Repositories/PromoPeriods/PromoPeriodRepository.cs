@@ -15,8 +15,8 @@ public class PromoPeriodRepository(AdminServicesMenuDbContext dbContext)
                 .SetProperty(period => period.EndDate, item.EndDate)
                 .SetProperty(period => period.StartDate, item.StartDate), cancellationToken);
 
-    public override Task DeleteAsync(PromoPeriod item, CancellationToken cancellationToken = default) 
+    public override Task DeleteAsync(string itemId, CancellationToken cancellationToken = default) 
         => _dbContext.PromoPeriods
-            .Where(p => p.Id == item.Id)
+            .Where(p => p.Id == itemId)
             .ExecuteDeleteAsync(cancellationToken);
 }

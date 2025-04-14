@@ -39,9 +39,9 @@ public interface IRepository<TEntity> where TEntity : class
     /// <summary>
     ///     Удаление сущности
     /// </summary>
-    /// <param name="item">Сущность</param>
+    /// <param name="itemId">ID Сущности</param>
     /// <param name="cancellationToken">Токен отмены</param>
-    Task DeleteAsync(TEntity item, CancellationToken cancellationToken = default);
+    Task DeleteAsync(string itemId, CancellationToken cancellationToken = default);
 
     /// <summary>
     ///     Удаление указанных сущностей

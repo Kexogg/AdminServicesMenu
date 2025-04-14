@@ -14,8 +14,8 @@ public class PresetRepository(AdminServicesMenuDbContext dbContext)
             .ExecuteUpdateAsync(calls => 
                 calls.SetProperty(preset => preset.Favorites, item.Favorites), cancellationToken);
 
-    public override Task DeleteAsync(Preset item, CancellationToken cancellationToken = default)
+    public override Task DeleteAsync(string itemId, CancellationToken cancellationToken = default)
         => _dbContext.Presets
-            .Where(preset => preset.Id == item.Id)
+            .Where(preset => preset.Id == itemId)
             .ExecuteDeleteAsync(cancellationToken);
 }

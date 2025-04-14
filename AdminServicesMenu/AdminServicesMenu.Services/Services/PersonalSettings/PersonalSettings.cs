@@ -1,12 +1,12 @@
-using AdminServicesMenu.Core.Repositories.PersonalSettingsRepository;
 using AdminServicesMenu.Services.Models;
+using AdminServicesMenu.Core.Repositories.SettingsRepository;
 
 namespace AdminServicesMenu.Services.Services.PersonalSettings;
 
-public class PersonalSettings(IPersonalSettingRepository repository) : IPersonalSettingsService
+public class PersonalSettingsService(IPersonalSettingRepository repository) : IPersonalSettingsService
 {
     public Task<long> GetTotalAsync()
-        => Task.Run(repository.GetTotalCount);
+        => Task.Run(() => 10l);
 
     public Task DeleteAsync(string id)
     {
