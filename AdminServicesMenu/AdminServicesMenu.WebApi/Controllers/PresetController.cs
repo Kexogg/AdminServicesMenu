@@ -2,7 +2,6 @@ using AdminServicesMenu.Core.Domain;
 using AdminServicesMenu.Core.Models;
 using AdminServicesMenu.Core.Repositories.Presets;
 using AdminServicesMenu.Core.Services;
-using AdminServicesMenu.WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -22,7 +21,7 @@ public class PresetController : ControllerBase
     
     [HttpGet("{id}", Name = nameof(GetCurrentPreset))]
     [Produces("application/json", "application/xml")]
-    public async Task<ActionResult<PresetDTO>> GetCurrentPreset([FromRoute] string id)
+    public async Task<ActionResult<PresetReponseDTO>> GetCurrentPreset([FromRoute] string id)
     {
         if (string.IsNullOrEmpty(id))
             return BadRequest();
@@ -34,7 +33,7 @@ public class PresetController : ControllerBase
 
     [HttpGet(Name = nameof(GetPresets))]
     [Produces("application/json", "application/xml")]
-    public ActionResult<IEnumerable<PresetDTO>> GetPresets([FromQuery]int pageNumber = 1, [FromQuery]int pageSize = 10)
+    public ActionResult<IEnumerable<PresetReponseDTO>> GetPresets([FromQuery]int pageNumber = 1, [FromQuery]int pageSize = 10)
     {
         pageNumber = Math.Max(pageNumber, 1);
         pageSize = Math.Min(Math.Max(pageSize, 1), 20);
@@ -65,7 +64,7 @@ public class PresetController : ControllerBase
 
     [HttpPost]
     [Produces("application/json", "application/xml")]
-    public async Task<ActionResult<PresetDTO>> CreatePreset([FromBody]PresetCreateDTO? preset)
+    public async Task<ActionResult<PresetReponseDTO>> CreatePreset([FromBody]PresetCreateDTO? preset)
     {
         if (preset is null)
             return BadRequest();
@@ -77,7 +76,7 @@ public class PresetController : ControllerBase
 
     [HttpDelete("{id}")]
     [Produces("application/json", "application/xml")]
-    public async Task<ActionResult<PresetDTO>> DeletePreset([FromQuery]string id)
+    public async Task<ActionResult<PresetReponseDTO>> DeletePreset([FromQuery]string id)
     {
         if (string.IsNullOrEmpty(id))
             return BadRequest();
@@ -89,7 +88,7 @@ public class PresetController : ControllerBase
     
     [HttpPut("{id}")]
     [Produces("application/json", "application/xml")]
-    public async Task<ActionResult<PresetDTO>> UpdatePreset([FromRoute] string id, [FromBody] PresetUpdateDTO? preset)
+    public async Task<ActionResult<PresetReponseDTO>> UpdatePreset([FromRoute] string id, [FromBody] PresetUpdateDTO? preset)
     {
         if (string.IsNullOrEmpty(id) || preset is null)
             return BadRequest();
