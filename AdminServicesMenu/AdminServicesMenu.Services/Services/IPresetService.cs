@@ -9,5 +9,5 @@ public interface IPresetService
     Task UpdateAsync(PresetUpdateDTO preset);
     Task DeleteAsync(string id);
     Task<List<PresetUpdateDTO>> GetAllAsync(in int page, int pageSize);
-    Task<long> GetTotalAsync();
+    Task<long> GetCountAsync();
 }

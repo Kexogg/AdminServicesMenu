@@ -9,5 +9,5 @@ public interface IPersonalSettingsService
     Task UpdateAsync(string id, PersonalSettingsUpdateDTO settings);
     Task DeleteAsync(string id);
     Task<List<PersonalSettingsResponseDTO>> GetAllAsync(int page, int pageSize);
-    Task<long> GetTotalAsync();
+    Task<long> GetCountAsync();
 }
