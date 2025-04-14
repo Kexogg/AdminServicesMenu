@@ -1,7 +1,7 @@
 using AdminServicesMenu.Core.Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace AdminServicesMenu.Core.Repositories;
+namespace AdminServicesMenu.Core.Repositories.Presets;
 
 public class PresetRepository(AdminServicesMenuDbContext dbContext) 
     : EntityRepository<Preset>(dbContext), IPresetRepository
