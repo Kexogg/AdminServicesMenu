@@ -24,15 +24,9 @@ public class ServiceController : ControllerBase
     [Produces("application/json", "application/xml")]
     public async Task<IActionResult> GetAllServices([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 20)
     {
-        var data = Enumerable.Range(1, 100).Skip((pageNumber - 1) * pageSize).Take(pageSize);
+        var obj = await _serviceService.GetAllAsync(pageNumber, pageSize);
 
-        return Ok(new
-        {
-            Page = pageNumber,
-            PageSize = pageSize,
-            TotalCount = 100,
-            Items = data
-        });
+        return Ok(obj);
     }
 
     /// <summary>
@@ -45,8 +39,8 @@ public class ServiceController : ControllerBase
     {
         if (string.IsNullOrEmpty(id))
             return BadRequest();
-        
-        return Ok();
+        var obj = await _serviceService.GetByIdAsync(id);
+        return Ok(obj);
     }
     
     /// <summary>
@@ -59,8 +53,10 @@ public class ServiceController : ControllerBase
     {
         if (model is null)
             return BadRequest();
+
+        var obj = await _serviceService.CreateAsync(model);
         
-        return Ok();
+        return Ok(obj);
     }
 
     /// <summary>
@@ -73,7 +69,7 @@ public class ServiceController : ControllerBase
     {
         if (string.IsNullOrEmpty(id))
             return BadRequest();
-        
+        await _serviceService.DeleteAsync(id);
         return Ok();
     }
 
@@ -89,7 +85,9 @@ public class ServiceController : ControllerBase
     {
         if (string.IsNullOrEmpty(id) || model is null)
             return BadRequest();
+
+        var obj = await _serviceService.UpdateAsync(id, model);
         
-        return Ok();
+        return Ok(obj);
     }
 }
