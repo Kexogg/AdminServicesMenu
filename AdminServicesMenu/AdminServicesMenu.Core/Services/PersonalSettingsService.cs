@@ -1,6 +1,6 @@
 namespace AdminServicesMenu.Core.Services;
 
-public class PersonalSettingsService : IEntityServices 
+public class PersonalSettingsService
 {
     public void Create()
     {
