@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminServicesMenu.Tests", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminServicesMenu.Core", "AdminServicesMenu.Core\AdminServicesMenu.Core.csproj", "{43AC62D8-E8CD-43A5-9158-1897C7B2D02B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminServicesMenu.Services", "AdminServicesMenu.Services\AdminServicesMenu.Services.csproj", "{3FE0A4F9-0E7A-4F6A-979D-832B043A96D3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{43AC62D8-E8CD-43A5-9158-1897C7B2D02B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43AC62D8-E8CD-43A5-9158-1897C7B2D02B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43AC62D8-E8CD-43A5-9158-1897C7B2D02B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FE0A4F9-0E7A-4F6A-979D-832B043A96D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FE0A4F9-0E7A-4F6A-979D-832B043A96D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FE0A4F9-0E7A-4F6A-979D-832B043A96D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FE0A4F9-0E7A-4F6A-979D-832B043A96D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
