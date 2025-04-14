@@ -12,7 +12,7 @@ public class PresetService(IPresetRepository repository) : IPresetService
         throw new NotImplementedException();
     }
 
-    public Task<IPresetService> CreateAsync(PresetCreateDTO preset)
+    public Task<PresetCreateDTO> CreateAsync(PresetCreateDTO preset)
     {
         throw new NotImplementedException();
     }
