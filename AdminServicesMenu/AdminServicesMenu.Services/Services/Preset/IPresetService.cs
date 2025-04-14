@@ -1,10 +1,10 @@
 using AdminServicesMenu.Services.Models;
 
-namespace AdminServicesMenu.Services.Services;
+namespace AdminServicesMenu.Services.Services.Preset;
 
 public interface IPresetService
 {
-    Task<long> GetTotalAsync();
+    Task<long> GetCountAsync();
     
     Task DeleteAsync(string id);
     Task CreateAsync(PresetCreateDTO preset);
